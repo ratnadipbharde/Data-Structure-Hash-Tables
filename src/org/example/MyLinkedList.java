@@ -1,6 +1,6 @@
 package org.example;
 
-public class MyLinkList<K> {
+public class MyLinkedList<K> {
     private INode<K> head;
     private INode<K> tail;
 

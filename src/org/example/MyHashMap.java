@@ -1,10 +1,10 @@
 package org.example;
 
 public class MyHashMap<K,V> {
-    MyLinkList<K> myLinkList;
+    MyLinkedList<K> myLinkList;
 
     public MyHashMap() {
-        this.myLinkList = new MyLinkList<>();
+        this.myLinkList = new MyLinkedList<>();
     }
 
     public V get(K key) {
