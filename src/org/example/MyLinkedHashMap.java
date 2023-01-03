@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class MyLinkedHashMap<K, V> {
     private final int numBuckets;
@@ -48,6 +49,13 @@ public class MyLinkedHashMap<K, V> {
         }else {
             myMapNode.setValue(value);
         }
+    }
+
+    public void remove(K key){
+        int index=this.getBucketIndex(key);
+        MyLinkedList<K>myLinkedList=this.myBucketArray.get(index);
+            MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) myLinkedList.search(key);
+            myLinkedList.remove(myMapNode);
     }
 
     @Override

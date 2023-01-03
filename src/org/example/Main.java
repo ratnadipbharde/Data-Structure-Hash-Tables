@@ -3,18 +3,21 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
-    public static final int FIND_FREQUENCY_OF_WORDS_IN_SENTENCE=1;
-    public static final int FIND_FREQUENCY_OF_WORDS_IN_PARAGRAPH=2;
-    public static final int EXIT=0;
+    public static final int FIND_FREQUENCY_OF_WORDS_IN_SENTENCE = 1;
+    public static final int FIND_FREQUENCY_OF_WORDS_IN_PARAGRAPH = 2;
+    public static final int REMOVE_WORD_FROM_PARAGRAPH = 3;
+    public static final int EXIT = 0;
     MyHashMap<String, Integer> myHashMap = new MyHashMap<>();
-    MyLinkedHashMap<String,Integer>myLinkedHashMap=new MyLinkedHashMap<>();
-    Scanner sc=new Scanner(System.in);
+    MyLinkedHashMap<String, Integer> myLinkedHashMap = new MyLinkedHashMap<>();
+    Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Main main=new Main();
-        while (true){
-            System.out.println("\n0. Exit\n1. Find frequency of words in sentence.\n2. Find frequency of words in Paragraph\n");
+        Main main = new Main();
+        while (true) {
+            System.out.println("\n0. Exit\n1. Find frequency of words in sentence.\n2. Find frequency of words in Paragraph" +
+                    "\n3. Remove word from Paragraph\n");
             System.out.print("Enter Your Choice : ");
-            switch (main.sc.nextInt()){
+            switch (main.sc.nextInt()) {
                 case FIND_FREQUENCY_OF_WORDS_IN_SENTENCE:
                     main.addSentence();
                     main.findFrequencyOfWordsInSentence();
@@ -23,10 +26,20 @@ public class Main {
                     main.addParagraph();
                     main.findFrequencyOfWordsInParagraph();
                     break;
+                case REMOVE_WORD_FROM_PARAGRAPH:
+                    main.addParagraph();
+                    main.removeWord();
+                    break;
                 case EXIT:
                     return;
             }
         }
+    }
+
+    private void removeWord() {
+        System.out.println("Enter word for remove : ");
+        myLinkedHashMap.remove(sc.next());
+        System.out.println(myLinkedHashMap+"\n");
     }
 
     private void findFrequencyOfWordsInParagraph() {
@@ -35,17 +48,17 @@ public class Main {
         System.out.println("Frequency is : " + frequency);
     }
 
-    public void addParagraph(){
-        String paragraph="\n\tParanoids are not paranoid because they are \n" +
+    public void addParagraph() {
+        String paragraph = "\n\tParanoids are not paranoid because they are \n" +
                 "paranoid but because they keep putting themselves \n" +
                 "deliberately into paranoid avoidable situations";
-        System.out.println("Added Paragraph : "+paragraph);
+        System.out.println("Added Paragraph : " + paragraph);
         String[] words = paragraph.toLowerCase().split(" ");
-        for(String word : words){
-            Integer value=myLinkedHashMap.get(word);
-            if(value == null) value = 1;
+        for (String word : words) {
+            Integer value = myLinkedHashMap.get(word);
+            if (value == null) value = 1;
             else value = value + 1;
-            myLinkedHashMap.add(word,value);
+            myLinkedHashMap.add(word, value);
         }
     }
 
@@ -57,11 +70,11 @@ public class Main {
 
     public void addSentence() {
         String sentence = "To be or not to be";
-        System.out.println("Added sentence : "+sentence);
+        System.out.println("Added sentence : " + sentence);
         String[] words = sentence.toLowerCase().split(" ");
-        for(String word : words) {
+        for (String word : words) {
             Integer value = myHashMap.get(word);
-            if(value == null) value = 1;
+            if (value == null) value = 1;
             else value = value + 1;
             myHashMap.add(word, value);
         }

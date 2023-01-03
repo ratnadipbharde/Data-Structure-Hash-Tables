@@ -74,6 +74,21 @@ public class MyLinkedList<K> {
         }
     }
 
+    public void remove(INode<K> myNode){
+        INode<K>tempNode=this.head;
+        INode<K>removeNode=this.head;
+        INode<K>previousNode=this.head;
+        while (tempNode.getNext()!=null){
+            previousNode=tempNode;
+            if ((tempNode.getNext()==myNode)||(this.head==myNode)){
+                removeNode=myNode.getNext();
+                break;
+            }
+            tempNode=tempNode.getNext();
+        }
+        previousNode.setNext(removeNode);
+    }
+
     public void add(INode<K> newNode) {
         if(this.tail == null) {
             this.tail = newNode;
